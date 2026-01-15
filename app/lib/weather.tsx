@@ -1,4 +1,4 @@
-export async function getWeatherDate(city: string){
+export async function getWeatherData(city: string){
     const API_KEY = process.env.OPENWEATHER_API_KEY;
     const res = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`,
