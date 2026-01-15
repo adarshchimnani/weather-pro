@@ -6,7 +6,8 @@ export async function getWeatherData(city: string){
     );
 
     if (!res.ok)
-        throw new Error('Failed to fetch weather')
+        throw new Error('Failed to fetch weather');
     
+    console.log(res);
     return res.json();
 }
