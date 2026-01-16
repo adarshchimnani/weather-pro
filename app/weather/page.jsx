@@ -14,7 +14,7 @@ export default async function WeatherPage({ searchParams }) {
   const cookieStore = cookies();
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY,
     { cookies: { getAll: () => cookieStore.getAll() } }
   );
   const { data: favorites } = await supabase.from('favorites').select('city_name');
