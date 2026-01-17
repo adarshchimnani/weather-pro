@@ -2,6 +2,8 @@
 import { addFavorite } from './actions';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
+import { deleteFavorite } from './actions';
+import SearchBox from '../../components/searchbox';
 
 export default async function WeatherPage({ searchParams }) {
   const city = searchParams.city || 'London';
@@ -25,6 +27,7 @@ export default async function WeatherPage({ searchParams }) {
   return (
     <div className="p-10">
       <div className="bg-slate-800 text-white p-6 rounded-lg">
+        <SearchBox />
         <h1 className="text-3xl font-bold">{data.name}</h1>
         <p className="text-5xl">{data.main?.temp}°C</p>
 
