@@ -8,6 +8,9 @@ export default async function WeatherPage({ searchParams }) {
 
   // Fetch weather data (as we did in Step 1)
   const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_API_KEY}&units=metric`);
+  if(!res.ok) {
+    throw new Error('City not found');
+  }
   const data = await res.json();
 
   // Fetch the user's saved favorites from Supabase
