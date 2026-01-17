@@ -5,7 +5,7 @@ import { cookies } from 'next/headers';
 
 export default async function WeatherPage({ searchParams }) {
   const city = searchParams.city || 'London';
-  
+
   // Fetch weather data (as we did in Step 1)
   const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_API_KEY}&units=metric`);
   const data = await res.json();
@@ -24,7 +24,7 @@ export default async function WeatherPage({ searchParams }) {
       <div className="bg-slate-800 text-white p-6 rounded-lg">
         <h1 className="text-3xl font-bold">{data.name}</h1>
         <p className="text-5xl">{data.main?.temp}°C</p>
-        
+
         {/* We use a form with a Server Action */}
         <form action={async () => {
           "use server";
@@ -44,6 +44,24 @@ export default async function WeatherPage({ searchParams }) {
           ))}
         </ul>
       </div>
+
+      <ul className="mt-4 space-y-2">
+        {favorites?.map((fav) => (
+          <li key={fav.id} className="flex justify-between items-center bg-slate-700 p-2 rounded">
+            <span>{fav.city_name}</span>
+
+            {/* Form for the Delete Action */}
+            <form action={async () => {
+              "use server";
+              await deleteFavorite(fav.id);
+            }}>
+              <button className="text-red-400 hover:text-red-600 text-sm">
+                Delete
+              </button>
+            </form>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
