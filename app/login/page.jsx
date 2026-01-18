@@ -24,7 +24,7 @@ export default function LoginPage() {
         className="border p-2 text-black"
         placeholder="Email"
       />
-      <button onClick={handleLogin} className="bg-blue-500 p-2">Login</button>
+      <button onClick={handleLogin} className="bg-blue-500 p-3">Login</button>
     </div>
   );
 }
